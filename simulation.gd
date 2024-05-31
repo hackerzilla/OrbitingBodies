@@ -1,9 +1,14 @@
 extends Node2D
 class_name Simulation
 
+@export var collisions_enabled: bool = false
+@export var explosions_enabled: bool = false
+
+
 # Idea: have explosions at random locations every 5 seconds  or so
 # explosion can be coded as a force divided by the distance squared to the center
 var explosion_force = 300880
+var explosion_frequency = 10.0
 
 var bodies
 var G_const = 1000
@@ -15,8 +20,15 @@ func _ready():
 	bodies = get_node("Bodies")
 	bodies = bodies.get_children()
 	var timer = get_node("Timer") as Timer
-	timer.wait_time = 5.0
-	timer.timeout.connect(explosion)
+	timer.wait_time = explosion_frequency
+	if collisions_enabled:
+		for body in bodies:
+			body.get_node("CollisionShape2D").disabled = false
+	else:
+		for body in bodies:
+			body.get_node("CollisionShape2D").disabled = true
+	if explosions_enabled:
+		timer.timeout.connect(explosion)
 
 func explosion():
 	
