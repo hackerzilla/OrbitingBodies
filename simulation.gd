@@ -1,13 +1,28 @@
 extends Node2D
 class_name Simulation
 
+# Idea: have explosions at random locations every 5 seconds  or so
+# explosion can be coded as a force divided by the distance squared to the center
+var explosion_force = 300880
+
 var bodies
 var G_const = 1000
 var max_dist: float
 
+@onready var camera = get_node("Camera2D")
+
 func _ready():
 	bodies = get_node("Bodies")
 	bodies = bodies.get_children()
+	var timer = get_node("Timer") as Timer
+	timer.wait_time = 5.0
+	timer.timeout.connect(explosion)
+
+func explosion():
+	
+	for body in bodies:
+		var direction = camera.global_position.direction_to(body.global_position)
+		body.apply_central_impulse(direction * explosion_force)
 
 func _process(delta):
 	# Find the max distance to rescale the viewport acordingly.
@@ -33,5 +48,4 @@ func _physics_process(delta):
 				var distance_squared = body_a.global_position.distance_to(body_b.global_position)
 				var g_force = body_a.mass * body_b.mass / distance_squared
 				var force_vector = G_const * g_force * body_a.global_position.direction_to(body_b.global_position) 
-				print(force_vector)
 				body_a.apply_central_force(force_vector)

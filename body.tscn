@@ -11,7 +11,7 @@ bounce = 1.0
 radius = 35.0143
 
 [node name="Body" type="RigidBody2D"]
-mass = 100.0
+mass = 219.8
 physics_material_override = SubResource("PhysicsMaterial_saqcr")
 gravity_scale = 1.66533e-16
 continuous_cd = 1
@@ -21,5 +21,5 @@ script = ExtResource("1_r6hva")
 shape = SubResource("CircleShape2D_bqens")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.367219, 0.367219)
+scale = Vector2(0.208551, 0.208551)
 texture = ExtResource("2_pctfn")
