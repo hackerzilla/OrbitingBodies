@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp4own46hamid"]
+
+[ext_resource type="Script" path="res://simulation.gd" id="1_h4sb6"]
+[ext_resource type="PackedScene" uid="uid://k7wj10vckyhe" path="res://body.tscn" id="1_ij74s"]
+[ext_resource type="Script" path="res://camera.gd" id="3_kvvoq"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_h4sb6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_kvvoq")
+
+[node name="Bodies" type="Node2D" parent="."]
+
+[node name="Body1" parent="Bodies" instance=ExtResource("1_ij74s")]
+position = Vector2(440, 417)
+
+[node name="Body2" parent="Bodies" instance=ExtResource("1_ij74s")]
+position = Vector2(1389, 340)
+
+[node name="Body3" parent="Bodies" instance=ExtResource("1_ij74s")]
+position = Vector2(974, 825)
