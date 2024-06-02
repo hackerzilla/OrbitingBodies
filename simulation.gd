@@ -9,7 +9,6 @@ class_name Simulation
 # explosion can be coded as a force divided by the distance squared to the center
 var explosion_force = 300880
 var explosion_frequency = 10.0
-
 var bodies
 var G_const = 1000
 var max_dist: float
@@ -36,7 +35,7 @@ func explosion():
 		var direction = camera.global_position.direction_to(body.global_position)
 		body.apply_central_impulse(direction * explosion_force)
 
-func _process(delta):
+func _physics_process(delta):
 	# Find the max distance to rescale the viewport acordingly.
 	max_dist = 0.0
 	for body in bodies:
@@ -52,8 +51,7 @@ func _process(delta):
 	vert = 1 / vert
 	var scale = max(horiz, vert)
 	#get_tree().get_root().content_scale_size 
-
-func _physics_process(delta):
+	
 	for body_a in bodies:
 		for body_b in bodies:
 			if body_a != body_b:

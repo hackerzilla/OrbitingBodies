@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://k7wj10vckyhe"]
+[gd_scene load_steps=7 format=3 uid="uid://k7wj10vckyhe"]
 
 [ext_resource type="Script" path="res://body.gd" id="1_r6hva"]
+[ext_resource type="Shader" path="res://body.gdshader" id="2_8mmpe"]
 [ext_resource type="Texture2D" uid="uid://dkg524pn6y44o" path="res://black_circle.png" id="2_pctfn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_saqcr"]
@@ -8,7 +9,10 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bqens"]
-radius = 35.0143
+radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ase41"]
+shader = ExtResource("2_8mmpe")
 
 [node name="Body" type="RigidBody2D"]
 scale = Vector2(0.281377, 0.281377)
@@ -23,5 +27,6 @@ shape = SubResource("CircleShape2D_bqens")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ase41")
 scale = Vector2(0.208551, 0.208551)
 texture = ExtResource("2_pctfn")

@@ -1,22 +1,17 @@
 extends Camera2D
 
 # Array of objects to keep in view
-var objects_to_track = []
+var bodies = []
 
 # Set the margin to provide some space around the objects
 var margin = 50.0
+var zoom_text
+var scaler = 0.3
 
 func _ready():
 	make_current()
-	objects_to_track = get_parent().get_node("Bodies").get_children()
-
-# Add objects to track
-func add_object_to_track(object):
-	objects_to_track.append(object)
-
-# Remove objects from tracking
-func remove_object_to_track(object):
-	objects_to_track.erase(object)
+	bodies = get_parent().get_node("Bodies").get_children()
+	zoom_text = get_node("Zoom")
 
 func _process(delta):
 	var min_x = INF
@@ -25,8 +20,8 @@ func _process(delta):
 	var max_y = -INF
 
 	# Find the bounding box of all tracked objects
-	for object in objects_to_track:
-		var pos = object.global_position
+	for body in bodies:
+		var pos = body.global_position
 		if pos.x < min_x:
 			min_x = pos.x
 		if pos.x > max_x:
@@ -49,5 +44,12 @@ func _process(delta):
 	var screen_size = get_viewport_rect().size
 	var zoom_x = (width + margin) / screen_size.x
 	var zoom_y = (height + margin) / screen_size.y
-	var zoom = max(zoom_x, zoom_y)
-	zoom = Vector2(zoom, zoom)  # Ensure zoom is not less than 1 (original size)
+	var zoom_max = max(zoom_x, zoom_y)
+	var zoom_max_inv = 1 / zoom_max
+	zoom = Vector2(zoom_max_inv, zoom_max_inv)  # Ensure zoom is not less than 1 (original size)
+	
+	#for body in bodies:
+		#var sprite = body.get_node("Sprite2D")
+		#sprite.scale = Vector2(zoom_max, zoom_max) * scaler
+	
+	zoom_text.text = "Zoom: " + String.num(zoom_max)

@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp4own46hamid"]
+[gd_scene load_steps=5 format=3 uid="uid://bp4own46hamid"]
 
 [ext_resource type="Script" path="res://simulation.gd" id="1_h4sb6"]
 [ext_resource type="PackedScene" uid="uid://k7wj10vckyhe" path="res://body.tscn" id="1_ij74s"]
 [ext_resource type="Script" path="res://camera.gd" id="3_kvvoq"]
+[ext_resource type="Script" path="res://InputManager.gd" id="4_nia0s"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_h4sb6")
-collisions_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("3_kvvoq")
+
+[node name="Zoom" type="Label" parent="Camera"]
+offset_left = -13.0
+offset_top = -489.0
+offset_right = 36.0
+offset_bottom = -466.0
+text = "Zoom:"
 
 [node name="Bodies" type="Node2D" parent="."]
 
@@ -42,3 +49,7 @@ position = Vector2(85, 921)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Input Manager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("4_nia0s")
