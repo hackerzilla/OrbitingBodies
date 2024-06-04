@@ -5,13 +5,11 @@ var bodies = []
 
 # Set the margin to provide some space around the objects
 var margin = 100.0
-var zoom_text
 var scaler = 0.3
 
-func _ready():
+func _on_ready():
 	make_current()
 	bodies = get_parent().get_node("Bodies").get_children()
-	zoom_text = get_node("Zoom")
 
 func _process(delta):
 	var min_x = INF

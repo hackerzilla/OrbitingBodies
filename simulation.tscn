@@ -7,20 +7,13 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_h4sb6")
+num_bodies = 100
+body_scene = ExtResource("1_ij74s")
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("3_kvvoq")
 
 [node name="Bodies" type="Node2D" parent="."]
-
-[node name="Body1" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(-462, -65)
-
-[node name="Body2" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(112, -452)
-
-[node name="Body3" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(267, 327)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

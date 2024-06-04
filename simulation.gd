@@ -1,8 +1,10 @@
 extends Node2D
 class_name Simulation
 
+@export var num_bodies: int = 3
 @export var collisions_enabled: bool = false
 @export var explosions_enabled: bool = false
+@export var body_scene: PackedScene
 
 
 # Idea: have explosions at random locations every 5 seconds  or so
@@ -16,7 +18,15 @@ var max_dist: float
 @onready var camera = get_node("Camera2D")
 
 func _ready():
+	# Spawn the bodies at random locations
+	var rng = RandomNumberGenerator.new()
 	bodies = get_node("Bodies")
+	for i in range(num_bodies):
+		var body = body_scene.instantiate()
+		var random_location = Vector2(rng.randfn(0, 1000), rng.randfn(0, 1000))
+		bodies.add_child(body)
+		body.global_position = random_location
+		
 	bodies = bodies.get_children()
 	var timer = get_node("Timer") as Timer
 	timer.wait_time = explosion_frequency
@@ -28,9 +38,11 @@ func _ready():
 			body.get_node("CollisionShape2D").disabled = true
 	if explosions_enabled:
 		timer.timeout.connect(explosion)
+	var camera = get_node("Camera")
+	camera._on_ready()
+	get_tree().paused = true
 
 func explosion():
-	
 	for body in bodies:
 		var direction = camera.global_position.direction_to(body.global_position)
 		body.apply_central_impulse(direction * explosion_force)
