@@ -4,7 +4,7 @@ extends Camera2D
 var bodies = []
 
 # Set the margin to provide some space around the objects
-var margin = 50.0
+var margin = 100.0
 var zoom_text
 var scaler = 0.3
 
@@ -32,13 +32,16 @@ func _process(delta):
 			max_y = pos.y
 
 	# Calculate the center of the bounding box
-	var center = Vector2((min_x + max_x) / 2, (min_y + max_y) / 2)
+	#var center = Vector2((min_x + max_x) / 2, (min_y + max_y) / 2)
+	var center = Vector2.ZERO
 	global_position = center
 
 	# Calculate the size of the bounding box
-	var width = max_x - min_x
-	var height = max_y - min_y
-
+	#var width = max_x - min_x
+	#var height = max_y - min_y
+	var width = 2 * max(max_x, abs(min_x))
+	var height = 2 * max(max_y, abs(min_y))
+	
 	# Set the zoom based on the size of the bounding box
 	# Adjusting the camera zoom to keep all objects in view
 	var screen_size = get_viewport_rect().size
@@ -52,4 +55,4 @@ func _process(delta):
 		#var sprite = body.get_node("Sprite2D")
 		#sprite.scale = Vector2(zoom_max, zoom_max) * scaler
 	
-	zoom_text.text = "Zoom: " + String.num(zoom_max)
+	#zoom_text.text = "Zoom: " + String.num(zoom_max)

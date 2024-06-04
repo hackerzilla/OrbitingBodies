@@ -11,8 +11,10 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_bqens"]
 radius = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ase41"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nx7v7"]
 shader = ExtResource("2_8mmpe")
+shader_parameter/velocity = null
+shader_parameter/speed = null
 
 [node name="Body" type="RigidBody2D"]
 scale = Vector2(0.281377, 0.281377)
@@ -27,6 +29,6 @@ shape = SubResource("CircleShape2D_bqens")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_ase41")
+material = SubResource("ShaderMaterial_nx7v7")
 scale = Vector2(0.208551, 0.208551)
 texture = ExtResource("2_pctfn")

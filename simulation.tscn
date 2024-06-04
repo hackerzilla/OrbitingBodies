@@ -11,41 +11,16 @@ script = ExtResource("1_h4sb6")
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("3_kvvoq")
 
-[node name="Zoom" type="Label" parent="Camera"]
-offset_left = -13.0
-offset_top = -489.0
-offset_right = 36.0
-offset_bottom = -466.0
-text = "Zoom:"
-
 [node name="Bodies" type="Node2D" parent="."]
 
 [node name="Body1" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(196, 654)
+position = Vector2(-462, -65)
 
 [node name="Body2" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(1389, 340)
+position = Vector2(112, -452)
 
 [node name="Body3" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(1781, 1089)
-
-[node name="Body4" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(397, 1184)
-
-[node name="Body5" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(1324, 980)
-
-[node name="Body6" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(962, -119)
-
-[node name="Body7" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(688, -313)
-
-[node name="Body8" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(678, -66)
-
-[node name="Body9" parent="Bodies" instance=ExtResource("1_ij74s")]
-position = Vector2(85, 921)
+position = Vector2(267, 327)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
